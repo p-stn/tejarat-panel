@@ -355,6 +355,7 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
 
 
     <basis core="call" file="./src/header.html" run="atclient"></basis>
+    <main>
     <div class="w-full h-full flex flex-row font-IRANSansWeb">
         <!--  -->
         <basis core="call" file="./src/sidebar.html" run="atclient"></basis>
@@ -640,6 +641,8 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
 
 
     </div>
+    </main>
+    
 
 
     <!-- <Basis core="api" run="atclient" schemaUrl="https://www.freeform.ir/schema/domainform"
@@ -648,10 +651,12 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
         displayMode="new" button="[data-btn-add]" resultSourceId="demo.data" 
         triggers="db.renew">
     </Basis> -->
+    
     <basis core="api"
-        url="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
-        method="get" name="api.name" OnProcessed="showSchema" run="atclient"></basis>
-
+    url="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+    method="get" name="api.name" OnProcessed="showSchema" run="atclient"></basis>
+    
+    <!-- <basis core="call" file="./src/footer.html" run="atclient"></basis> -->
 </body>
 <script src="http://basiscore.net/_js/basiscore-2.36.2.min.js"></script>
 <script src="http://cdn.basiscore.net/_js/alasql.min.js"></script>
