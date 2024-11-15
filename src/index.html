@@ -94,6 +94,8 @@
 
     .showbox {
         display: flex;
+        background-color: var(--backgroundColor) !important;
+
     }
 
     .svgclick>svg {
@@ -326,7 +328,8 @@
         align-items: center;
         color: #fff;
     }
-    .stylepaddingtoshow{
+
+    .stylepaddingtoshow {
         padding-right: 50px;
         transition: padding 0.3s ease;
 
@@ -352,7 +355,7 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
 
 
     <basis core="call" file="./src/header.html" run="atclient"></basis>
-    <div class="w-full h-full flex flex-row">
+    <div class="w-full h-full flex flex-row font-IRANSansWeb">
         <!--  -->
         <basis core="call" file="./src/sidebar.html" run="atclient"></basis>
         <div class="dashboardm mt-[100px] pr-[250px] w-full h-full mx-[40px] pt-[56px] bg-white">
@@ -361,7 +364,7 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
 
 
             <div class="hiddenbox w-full h-full flex flex-col ">
-                <div class="w-full h-[79px] mb-[15px] shadow-md px-[61px] flex justify-start items-center bg-secondary">
+                <div class="w-full h-[79px] mb-[25px] shadow-md px-[61px] flex justify-start items-center bg-backgroundColor">
                     <h4 class="setiontitle flex flex-row">
                         <span class="flex flex-row">
                             <h5 id="tab-1" class="flex text-black">1.ثبت نام شرکت
@@ -575,7 +578,6 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
                     <button id="btctnex"
                         class="btnclicknext w-[480px] h-[50px] ml-[10px] bg-primary rounded-[8px] text-black ">ثبت و
                         ادامه</button>
-                    <button id="getjson" class="w-[300px] h-[50px] bg-[red] ">JSON</button>
                     <Basis core="api" run="atclient"
                         url="http://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/fa/editobject"
                         method="post"
@@ -583,160 +585,14 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
                         content-type="application/x-www-form-urlencoded" triggers="edit.object"
                         if="{##edit.object|(false)##}">
                     </Basis>
-                    {##edit.object.value##}
                     <button id="btnclickprv"
                         class="hiddenbox btnclickprv w-[480px] mr-[10px] h-[50px] bg-primary rounded-[8px] text-black ">برگشت
                         به
                         مرحله قبل</button>
-                </div>
-
-                <script>
-                    const getjson = document.querySelector("#getjson")
-                    getjson.addEventListener("click", (e) => {
-                        // const getvalue = document.querySelector(".getvalue")
-                        // const getinput = getvalue.querySelectorAll("input")
-                        // console.log(getinput);
-                        let allData = [];
-
-                        getjson.addEventListener("click", (e) => {
-                            const getvalue = document.querySelector(".getvalue");
-                            const getinput = getvalue.querySelectorAll("input");
-                            getinput.forEach((e) => {
-                                if (e.type == "file") {
-                                    console.log(e.previousSibling.firstChild.currentSrc);
-                                }
-                                if (e.type == "file") {
-
-                                    if (e.previousSibling.firstChild.currentSrc != "") {
-                                        const jsonData = {
-                                            "propId": parseInt(e.id),
-                                            "multi": false,
-
-                                            "added": [
-                                                {
-                                                    "parts": [
-
-                                                        {
-
-                                                            "part": 1,
-                                                            "values": [
-                                                                {
-                                                                    "value": {
-                                                                        'content': `${e.previousSibling.firstChild.currentSrc}`,
-                                                                        "name": "testMap.png",
-                                                                        "size": 114551,
-                                                                        "type": "image/png"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                        const existingData = allData.find(data => data.propId == e.id);
-                                        if (!existingData) {
-                                            allData.push(jsonData);
-                                        }
-                                    }
-
-                                } else {
-                                    if (e.value != "") {
-                                        const jsonData = {
-                                            "propId": parseInt(e.id),
-                                            "multi": false,
-
-                                            "added": [
-                                                {
-                                                    "parts": [
-
-                                                        {
-
-                                                            "part": 1,
-                                                            "values": [
-                                                                {
-                                                                    "value": e.value
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        };
-
-                                        const existingData = allData.find(data => data.propId == e.id);
-                                        if (!existingData) {
-                                            allData.push(jsonData);
-                                        }
-                                    }
-
-                                }
-
-
-
-                            });
-                            console.log(allData);
-
-                            const objectsend =
-                            {
-                                // "baseVocab": "http://schema.site/FA/vo",
-                                // "lid": 1,
-                                // "schemaId": "F8719EEC-702A-4589-877C-490B928BC0D8",
-                                // "paramUrl": "/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت",
-                                // "schemaVersion": "4.8",
-                                "lid": 1,
-                                "paramUrl": "/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت",
-                                "schemaId": "F8719EEC-702A-4589-877C-490B928BC0D8",
-                                "schemaVersion": "4.8",
-                                "properties": allData
-                            }
-                            console.log(objectsend);
-                            $bc.setSource('edit.object', {
-                                value: JSON.stringify(objectsend),
-                            })
-
-                        });
-
-
-
-
-
-
-
-                        // {
-                        //     "propId": 5919,
-                        //         "multi": false,
-                        //             "added": [
-                        //                 {
-                        //                     "parts": [
-                        //                         {
-                        //                             "part": 1,
-                        //                             "values": [
-                        //                                 {
-                        //                                     "value": "asdfds"
-                        //                                 }
-                        //                             ]
-                        //                         }
-                        //                     ]
-                        //                 }
-                        //             ]
-                        // },
-
-                    })
-
-                </script>
-
-
-
-
-
-
-
-
-
+                </div>            
             </div>
             <div
-                class="popup w-full h-[100vh] sectionLast bg-secondary hidden overflow-y-auto flex-col absolute z-50  top-0 bottom-0 right-0 left-0 px-[112px] py-[48px]">
+                class="popup w-full h-[150vh] mt-[100px] sectionLast bg-secondary hidden overflow-y-auto flex-col absolute z-50  top-0 bottom-0 right-0 left-0 px-[112px] py-[48px]">
                 <div>
                     <button class="closepopup">
                         <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -824,7 +680,7 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
     }
 </script>
 <script>
-    
+
 
 
 
@@ -1109,6 +965,7 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
 
 
 
+
         const setiontitle = document.querySelectorAll(".setiontitle>span>h5");
 
 
@@ -1147,12 +1004,9 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
         // setiontitle.length
         let mytext = false
         btctnex.addEventListener("click", async (e) => {
+            // Changing the color of the titles of the sections
             const setiontitle = document.querySelectorAll(".setiontitle>span>h5");
-            console.log(setiontitle);
             setiontitle.forEach((h5, index) => {
-                console.log("currentIndex", currentIndex);
-                console.log("index", index);
-                // console.log(h5.querySelector("span>svg"));
                 const getindex = currentIndex + 1
                 const getindexf = currentIndex - 2
                 if (index < getindex) {
@@ -1167,17 +1021,15 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
 
                 }
             });
-            console.log("currentIndex",currentIndex);
+            // Changing the state of the buttons according to the currentIndex
             if (currentIndex == 0) {
                 const backbtn = document.querySelector("#btnclickprv")
                 backbtn.classList.add("hiddenbox")
             }
-            else {
-                const backbtn = document.querySelector("#btnclickprv")
-                backbtn.classList.remove("hiddenbox")
-            }
+
             const getsectiontitle = setiontitle[currentIndex].id
             const getsection = document.querySelectorAll(`[section-des="${getsectiontitle}`)
+            // Next button
             if (e.target.id == "btctnex") {
                 let allInputsFilled = true
                 getsection.forEach((e) => {
@@ -1218,14 +1070,125 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
                     })
 
                 })
-                // break
+                // If the fields are empty
                 // if (!allInputsFilled) {
-                //     return; 
+                //     return;
                 // }
                 let sections = null
-                if (currentIndex < setiontitle.length - 1) {
+                if (currentIndex + 1 > 0) {
                     const backbtn = document.querySelector("#btnclickprv")
                     backbtn.classList.remove("hiddenbox")
+                    console.log("Thsi ssfs");
+
+                }
+                if (currentIndex >= setiontitle.length - 2) {
+                    document.querySelector("#btctnex").innerText = "ثبت"
+                }
+
+
+                
+                
+                // SEND json 
+                if (currentIndex >= setiontitle.length - 1) {
+                    console.log("SEND");
+                    let allData = [];
+                    const getvalue = document.querySelector(".getvalue");
+                    const getinput = getvalue.querySelectorAll("input");
+                    getinput.forEach((e) => {
+                        if (e.type == "file") {
+                            console.log(e.previousSibling.firstChild.currentSrc);
+                        }
+                        if (e.type == "file") {
+
+                            if (e.previousSibling.firstChild.currentSrc != "") {
+                                const jsonData = {
+                                    "propId": parseInt(e.id),
+                                    "multi": false,
+
+                                    "added": [
+                                        {
+                                            "parts": [
+
+                                                {
+
+                                                    "part": 1,
+                                                    "values": [
+                                                        {
+                                                            "value": {
+                                                                'content': `${e.previousSibling.firstChild.currentSrc}`,
+                                                                "name": "testMap.png",
+                                                                "size": 114551,
+                                                                "type": "image/png"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                                const existingData = allData.find(data => data.propId == e.id);
+                                if (!existingData) {
+                                    allData.push(jsonData);
+                                }
+                            }
+
+                        } else {
+                            if (e.value != "") {
+                                const jsonData = {
+                                    "propId": parseInt(e.id),
+                                    "multi": false,
+
+                                    "added": [
+                                        {
+                                            "parts": [
+
+                                                {
+
+                                                    "part": 1,
+                                                    "values": [
+                                                        {
+                                                            "value": e.value
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                };
+
+                                const existingData = allData.find(data => data.propId == e.id);
+                                if (!existingData) {
+                                    allData.push(jsonData);
+                                }
+                            }
+
+                        }
+
+
+
+                    });
+                    const objectsend =
+                    {
+                        // "baseVocab": "http://schema.site/FA/vo",
+                        "lid": 1,
+                        "paramUrl": "/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت",
+                        "schemaId": "F8719EEC-702A-4589-877C-490B928BC0D8",
+                        "schemaVersion": "4.8",
+                        "properties": allData
+                    }
+                    console.log(objectsend);
+                    // $bc.setSource('edit.object', {
+                    //     value: JSON.stringify(objectsend),
+                    // })
+
+
+                }
+                // ##########
+
+
+                if (currentIndex < setiontitle.length - 1) {
+                    // document.querySelector("#btctnex").innerText = "ثبت"
                     currentIndex++
                     localStorage.setItem('myNumber', currentIndex);
                     getvalue.forEach((e) => {
@@ -1235,16 +1198,8 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
                     getvalue[currentIndex].classList.remove("hiddenbox");
                     getvalue[currentIndex].classList.add("showbox");
                     sections = document.querySelectorAll(`[section-des="${setiontitle[currentIndex - 1].id}"]`);
-                }                
-                if(currentIndex == setiontitle.length - 2){
-                    console.log(">>>>>>>>");
-                    if(e.target.id == "btctnex"){
-                        e.target.innerText = "تستی"
-                    }
                 }
-                
                 else if (currentIndex == setiontitle.length - 1) {
-                    console.log("OK Thiss");                    
                     sections = document.querySelectorAll(`[section-des="tab-5"]`);
                 }
                 else {
@@ -1328,6 +1283,11 @@ http://i113v121.undertest.ir/images/Map-38B.jpg -->
             }
 
             if (e.target.id == "btnclickprv") {
+                if (currentIndex < setiontitle.length) {
+                    const backbtn = document.querySelector("#btnclickprv")
+                    document.querySelector("#btctnex").innerText = "ثبت و ادامه"
+                    backbtn.classList.remove("hiddenbox")
+                }
 
                 if (e.target.id == "btnclickprv") {
                     if (currentIndex > 0) {

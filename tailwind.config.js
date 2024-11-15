@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{html,js.css}", "*.html"],
   theme: {
+      fontFamily: {
+        IRANSansWeb: ['IRANSans']
+      },
     extend: {
       colors: {
 
@@ -12,7 +15,9 @@ module.exports = {
         'textgray': 'var(--textgray)',
         'textred': 'var(--textred)',
         'bghead': 'var(--bghead)',
-        'tertiarylight': 'var(--tertiarylight)'
+        'tertiarylight': 'var(--tertiarylight)',
+        'backgroundColor': 'var(--backgroundColor)'
+
       }
     },
   },
